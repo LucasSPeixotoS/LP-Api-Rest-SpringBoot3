@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "users")
+@Table(name = "tb_user")
 public class User implements Serializable {
 
     @Serial
@@ -18,8 +18,13 @@ public class User implements Serializable {
     private Long id;
     private String name;
     private String email;
+
     private String phone;
+
     private String password;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 
     public User() {
 
