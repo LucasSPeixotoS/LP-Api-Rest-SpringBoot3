@@ -18,7 +18,7 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate moment;
+    private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
@@ -27,9 +27,9 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Long id, LocalDate moment, User customer) {
+    public Order(Long id, LocalDate date, User customer) {
         this.id = id;
-        this.moment = moment;
+        this.date = date;
         this.customer = customer;
     }
 
@@ -41,12 +41,12 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getMoment() {
-        return moment;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setMoment(LocalDate moment) {
-        this.moment = moment;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public User getCustomer() {
