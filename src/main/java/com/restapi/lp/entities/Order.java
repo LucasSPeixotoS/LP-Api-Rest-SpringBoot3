@@ -16,7 +16,9 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private LocalDate moment;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User customer;
