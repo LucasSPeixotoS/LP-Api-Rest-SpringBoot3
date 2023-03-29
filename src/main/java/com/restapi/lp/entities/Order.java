@@ -1,5 +1,6 @@
 package com.restapi.lp.entities;
 
+import com.restapi.lp.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -20,6 +21,8 @@ public class Order implements Serializable {
 
     private LocalDate date;
 
+    private Integer orderStatus;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User customer;
@@ -27,9 +30,10 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(Long id, LocalDate date, User customer) {
+    public Order(Long id, OrderStatus orderStatus, LocalDate date, User customer) {
         this.id = id;
         this.date = date;
+        this.setOrderStatus(orderStatus);
         this.customer = customer;
     }
 
@@ -47,6 +51,16 @@ public class Order implements Serializable {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        if (orderStatus != null) {
+            this.orderStatus = orderStatus.getCode();
+        }
     }
 
     public User getCustomer() {
