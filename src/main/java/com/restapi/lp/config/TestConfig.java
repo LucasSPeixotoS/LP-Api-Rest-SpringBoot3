@@ -1,8 +1,10 @@
 package com.restapi.lp.config;
 
+import com.restapi.lp.entities.Category;
 import com.restapi.lp.entities.Order;
 import com.restapi.lp.entities.User;
 import com.restapi.lp.entities.enums.OrderStatus;
+import com.restapi.lp.repositories.CategoryRepository;
 import com.restapi.lp.repositories.OrderRepository;
 import com.restapi.lp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -40,5 +45,12 @@ public class TestConfig implements CommandLineRunner {
         Order order3 = new Order(null, OrderStatus.WAITING_PAYMENT, LocalDate.now(), user1);
 
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
+        Category category1 = new Category(null, "Computers");
+        Category category2 = new Category(null, "Smartphones");
+        Category category3 = new Category(null, "Tablets");
+
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+
     }
 }
