@@ -20,11 +20,11 @@ public class ProductService {
     }
 
     public Product findById(Long id) {
-        Optional<Product> category = productRepository.findById(id);
-        if (category.isEmpty()) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isEmpty()) {
             return new Product();
         } else {
-            return category.get();
+            return product.get();
         }
 
     }
