@@ -1,5 +1,6 @@
 package com.restapi.lp.entities;
 
+
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -22,7 +23,10 @@ public class Product implements Serializable {
     private String description;
     private double price;
     private String imageURL;
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     public Product() {
